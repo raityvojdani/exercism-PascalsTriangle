@@ -6,7 +6,7 @@ internal class Program
     {
 
         //There is no need to create an object from PascalsTriangle, because the class and method are static.
-        IEnumerable<IEnumerable<int>> result = PascalsTriangle.Calculate(3);
+        IEnumerable<IEnumerable<int>> result = PascalsTriangle.Calculate(7);
 
         //You must use foreach to access the result values ​​because result is an IEnumerable.
         foreach (IEnumerable<int> row in result)
