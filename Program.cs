@@ -1,25 +1,36 @@
-namespace ConsoleApp1;
+using System;
 
-internal class Program
+namespace ConsoleApp1
 {
-    static void Main(string[] args)
+    /// <summary>
+    /// This class is the entry point of the program.
+    /// </summary>
+    internal class Program
     {
-
-        // Create an instance of PascalsTriangle via dependency injection
-        PascalsTriangle triangle = new PascalsTriangle();
-
-        IEnumerable<IEnumerable<int>> result = triangle.Calculate(7);
-
-        //You must use foreach to access the result values ​​because result is an IEnumerable.
-        foreach (IEnumerable<int> row in result)
+        /// <summary>
+        /// The main method where program execution begins.
+        /// </summary>
+     
+        static void Main(string[] args)
         {
-            
-            foreach (int num in row)
-            {
-                Console.Write(num + " ");
-            }
-            Console.WriteLine(); //To create a new line after each row
-        }
+            // Create library
+            Library library = new Library();
 
+            // Create and add library items
+            var bookItem = new LibraryItem<string>("The Great Gatsby");
+            var magazineItem = new LibraryItem<string>("National Geographic");
+            var dvdItem = new LibraryItem<string>("Inception DVD");
+
+            library.AddItem(bookItem);
+            library.AddItem(magazineItem);
+            library.AddItem(dvdItem);
+
+            // Retrieve and display all items in the library
+            Console.WriteLine("Items in the Library:");
+            foreach (var item in library.GetAllItems())
+            {
+                Console.WriteLine(item);
+            }
+        }
     }
 }
