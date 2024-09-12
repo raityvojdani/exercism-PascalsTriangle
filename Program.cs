@@ -1,12 +1,14 @@
-﻿namespace ConsoleApp1;
+namespace ConsoleApp1;
 
 internal class Program
 {
     static void Main(string[] args)
     {
 
-        //There is no need to create an object from PascalsTriangle, because the class and method are static.
-        IEnumerable<IEnumerable<int>> result = PascalsTriangle.Calculate(7);
+        // Create an instance of PascalsTriangle via dependency injection
+        PascalsTriangle triangle = new PascalsTriangle();
+
+        IEnumerable<IEnumerable<int>> result = triangle.Calculate(7);
 
         //You must use foreach to access the result values ​​because result is an IEnumerable.
         foreach (IEnumerable<int> row in result)
