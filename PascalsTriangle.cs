@@ -1,23 +1,42 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-public static  class PascalsTriangle
+/// <summary>
+/// Represents a class for calculating Pascal's Triangle.
+/// </summary>
+public class PascalsTriangle
 {
-    public static IEnumerable<IEnumerable<int>> Calculate(int rows)
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PascalsTriangle"/> class.
+    /// </summary>
+    public PascalsTriangle()
     {
-        // A list to hold all rows of List<List<int>> type 
+    }
+
+    /// <summary>
+    /// Calculates Pascal's Triangle up to the specified number of rows.
+    /// </summary>
+    /// <param name="rows">The number of rows to calculate.</param>
+    /// <returns>A collection of collections representing Pascal's Triangle.</returns>
+    public IEnumerable<IEnumerable<int>> Calculate(int rows)
+    {
+        return GeneratePascalsTriangle(rows);
+    }
+
+    /// <summary>
+    /// Generates Pascal's Triangle up to the specified number of rows.
+    /// </summary>
+    /// <param name="rows">The number of rows to generate.</param>
+    /// <returns>A collection of collections representing Pascal's Triangle.</returns>
+    private IEnumerable<IEnumerable<int>> GeneratePascalsTriangle(int rows)
+    {
         List<List<int>> result = new List<List<int>>();
 
-        // Loops to generate rows
         for (int i = 0; i < rows; i++)
         {
-            // Each line is a new list
             List<int> row = new List<int>();
-
-            // The first number of each row is always 1
             row.Add(1);
 
-            // If the row has more than 2 elements, the middle elements should be calculated
             for (int j = 1; j < i; j++)
             {
                 int previousRowLeft = result[i - 1][j - 1];
@@ -25,13 +44,11 @@ public static  class PascalsTriangle
                 row.Add(previousRowLeft + previousRowRight);
             }
 
-            //The last number of each line is always 1 (except the first line).
             if (i > 0)
             {
                 row.Add(1);
             }
 
-            //Add row to the main list
             result.Add(row);
         }
 
